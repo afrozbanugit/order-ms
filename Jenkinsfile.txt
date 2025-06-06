@@ -22,14 +22,14 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
+                    sh 'cd spring'
                     sh 'docker build -t ${IMAGE} .'
                 }
             }
         }
         stage('Push Docker Image') {
             steps {
-                script {
-                    sh 'cd spring'
+                script {                    
                     docker.withRegistry('https://hub.docker.com/', "${CREDENTIALS_ID}") {
                         docker.image("${IMAGE}").push()
                     }
