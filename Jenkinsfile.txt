@@ -20,7 +20,7 @@ pipeline {
          stage('Building App') {
             steps {
                 script{
-                    sh 'cd order-ms/spring && mvn clean install -DskipTests'
+                    sh 'cd spring && mvn clean install -DskipTests'
                 }
             }
         }
