@@ -3,6 +3,8 @@ pipeline {
     environment{
 	APP_DIR='/var/lib/jenkins/workspace/order-ms/spring'
 	JAR_FILE='order-ms-0.0.1-SNAPSHOT.jar'
+    IMAGE = 'aafrozbanu/order-ms:latest'
+    CREDENTIALS_ID = 'docker-registry-login-id'
 	}
     stages {
          stage('Clean workspace'){
@@ -17,17 +19,19 @@ pipeline {
                 }
             }
         }
-         stage('Building App') {
+        stage('Build Docker Image') {
             steps {
-                script{
-                    sh 'cd spring && mvn clean install -DskipTests'
+                script {
+                    sh 'docker build -t ${IMAGE}'
                 }
             }
         }
-        stage('Run Application') {
+        stage('Push Docker Image') {
             steps {
-                script{
-                    sh 'cd $APP_DIR/target && java -jar $JAR_FILE'
+                script {
+                    docker.withRegistry('https://hub.docker.com/', "${CREDENTIALS_ID}") {
+                        docker.image("${IMAGE}").push()
+                    }
                 }
             }
         }
