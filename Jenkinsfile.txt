@@ -15,7 +15,6 @@ pipeline {
         stage('Cloning Git Repo') {
             steps {
                 script{
-                    sh 'cd order-ms'
                     sh 'git clone "https://github.com/afrozbanugit/order-ms.git"'
                 }
             }
