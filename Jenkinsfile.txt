@@ -5,7 +5,7 @@ pipeline {
 	JAR_FILE='order-ms-0.0.1-SNAPSHOT.jar'
     IMAGE = 'aafrozbanu/order-ms:latest'
     DOCKER_CREDENTIALS_ID = 'docker-registry-login-id'
-    AWS_CREDENTIALS_ID='AWS-Access-Id'
+    AWS_CREDENTIALS_ID='Aws-login-id'
     AWS_REGION='us-west-1'
     CLUSTER_NAME='proj1-eks-cluster'
 	}
