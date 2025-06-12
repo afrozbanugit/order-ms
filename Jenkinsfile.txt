@@ -46,7 +46,7 @@ pipeline {
                 ]]) {
                     sh '''
                         aws eks --region $AWS_REGION update-kubeconfig --name $CLUSTER_NAME
-                        ls -R                      # Debug the folder structure
+                        #ls -R                      # Debug the folder structure
                         kubectl apply -f order-ms/k8s-manifests/deployment.yml
                         kubectl apply -f order-ms/k8s-manifests/service.yml
                     '''
