@@ -3,6 +3,7 @@ package com.order.ms.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,11 @@ public class OrderController {
 
 	@Autowired
 	private KafkaTemplate<String, OrderEvent> kafkaTemplate;
+
+	@GetMapping("/health")
+	public String healthCheck(){
+		return "Health check pass";
+	}
 
 	@PostMapping("/orders")
 	public void createOrder(@RequestBody CustomerOrder customerOrder) {
