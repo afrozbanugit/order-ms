@@ -4,7 +4,7 @@ kind: Service
 metadata:
     name: order-ms-service
 spec:
-    type: NodePort # or LoadBalancer, depending on your setup
+    type: LoadBalancer # since Nodeport is not working
     selector: 
         app: order-ms             
     ports:
